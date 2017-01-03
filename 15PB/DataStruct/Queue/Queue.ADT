@@ -1,0 +1,22 @@
+ADT 队列（Queue）
+
+Data
+
+D = { ai | ai（- ElemSet, i = 1, 2, ..., n, n >= 0; }
+
+DataRelation
+
+R = { <ai - 1, ai> | ai - 1, ai (- >= D, i = 2, 3, ...,n }
+约定A1端为队头，An端为队尾
+
+Operation
+
+1.初始化一个空队列
+2.判断队空，空队返回true，否则返回false
+3.入队，在队尾插入一个元素
+4.出队，在队头删除一个元素
+5.取队头数据元素值
+6.置队列为空状态
+7.销毁队列
+
+endADT
