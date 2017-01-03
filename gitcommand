@@ -3,4 +3,8 @@ git add .
 git commit -m "."
 git remote add origin git@github.com:MrYone/study.git
 git push -u origin master
+git push
 
+
+
+.git/config
