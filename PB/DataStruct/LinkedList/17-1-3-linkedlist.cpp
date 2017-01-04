@@ -43,9 +43,9 @@ class ClinkedList{
 			ElemType data[20];
 			int Length;
 		}SqList;
-		
+
 	public:
-		
+
 		bool InitList(ElemType *L);
 		bool ListEmpty(ElemType L);
 		bool ClearList(ElemType *L);
