@@ -1,0 +1,56 @@
+设置选项
+
+vim拥有很多选项可以设置以改变其展现方式
+
+==========================================================
+布尔选项(:set <name>,set no<name>)
+
+:set number
+:set nonumber
+
+-----------------------------------------------------------
+切换布尔选项
+
+可以“切换”布尔选项的值，即从开启切为关闭或从关闭切换为开启
+:set number!
+再次执行会恢复原来设置
+
+-----------------------------------------------------------
+查看选项当前值
+
+在命令后面加上?可以查看当前布尔选项的值
+:set number?
+
+如果有行号则显示number,没有则显示nonumber
+
+-----------------------------------------------------------
+键值选项(:set <name>=<value>)
+
+有些选项并不只有off或on两种状态，他们需要一个值
+
+:set number
+:set numberwidth=10
+:set numberwith?
+
+最后显示numberwidth=10
+
+:set wrap?
+:set shiftround?
+:set matchtime?
+
+-----------------------------------------------------------
+一次性设置设置多个选项
+
+:set numberwidth=2
+:set nonumber
+:set nonumber numberwidth=2
+
+==========================================================
+
+:help 'number'
+:help relativenumber
+:help numberwidth
+:help wrap
+:help shiftround
+:help matchtime
+

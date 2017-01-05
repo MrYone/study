@@ -1,0 +1,19 @@
+查看其它帮助文档
+:help echo
+:help echom
+
+===========================================================
+echo不会记录信息
+:echo "Hello, world!"
+
+echom会记录脚本运行完的信息
+:echom "Hello again, world!"
+
+查看信息
+:messages
+
+
+注释
+"
+
+
