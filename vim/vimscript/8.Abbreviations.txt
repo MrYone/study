@@ -1,0 +1,23 @@
+Abbreviations
+
+语法纠正，自动更正
+===========================================================
+
+配置下列配置后，进入insert模式输入adn加上空格键后
+adn会被自动替换为and
+:iabbrev adn and
+
+:iabbrev waht what
+:iabbrev tehn then
+
+:set iskeyword?
+
+:iabbrev @@ steve@stevelosh.com
+:iabbrev ccopy Copyright 2013 Steve Losh, all rights reserved.
+
+:inoremap ssig -- <cr>Steve Losh<cr>steve@stevelosh.com
+
+Larry Lessig wrote the book "Remix"
+
+:iunmap ssig
+:iabbrev ssig -- <cr>Steve Losh<cr>steve@stevelosh.com
