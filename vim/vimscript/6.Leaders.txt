@@ -1,0 +1,37 @@
+Leaders
+
+===========================================================
+映射按键序列
+
+normal模式下快速敲入-d或-c
+
+删除一行
+:nnoremap -d dd
+删除一行并进入insert模式
+:nnoremap -c ddO
+
+可以用一个不常用的按键（-）作为前缀
+后接其他字符作为一个整体进行映射
+
+-----------------------------------------------------------
+Leader(前缀)
+
+:let mapleader = "-"
+
+当创建新的映射时，可以使用<leader>表示“我设置的leader按键”
+:nnoremap <leader>d dd
+
+-----------------------------------------------------------
+Local Leader
+
+另一个Leader，Local Leader
+用于在某些类型文件中启效果
+Local Leader和Leader用法一样
+
+:let maplocalleader = "\\"
+
+===========================================================
+
+:help mapleader
+:help maplocalleader
+
