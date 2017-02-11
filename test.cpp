@@ -1,44 +1,28 @@
-#include "iostream"
+#include <stdio.h>
+ 
+int add1(int a1,int b1);
+int add2(int a2,int b2);
+ 
+int main(void)
+{
+    int numa1 = 1, numb1 = 2;
+    int numa2 = 2, numb2 = 3;
+    int(*op[2])(int a,int b);
+     
+    op[0] = add1;
+    op[1] = add2;
+     
+    printf("%d\t%d\n", op[0](numa1, numb1), op[1](numa2, numb2));
 
-using namespace std;
-// class CA
-//template <class T>
-class CA{
-	private:
-		int m_a;
-	
-	public:
-		CA():m_a(10){}
-
-		template <typename T>
-		friend void test(T &obj);
-
-};
-//class CB
-//template <class T>
-class CB{
-	private:
-		int m_a;
-	
-	public:
-		CB():m_a(20){}
-
-		template <typename T>
-		friend void test(T &obj);
-};
-//test
-template <class T>
-void test(T &obj){
-	cout << obj.m_a << endl;
-}
-
-int main(){
-	CA obja;
-	CB objb;
-
-	test(obja);
-
-	test(objb);
-	
 	return 0;
+}
+ 
+int add1(int a1,int b1)
+{
+    return a1 + b1;
+}
+ 
+int add2(int a2,int b2)
+{
+    return a2 + b2;
 }

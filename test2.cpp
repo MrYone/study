@@ -1,13 +1,55 @@
-#include "iostream"
-#include "string"
-using namespace std;
+#include <stdio.h>
 
-int main(){
-	string s;
-	getline(cin,s);
-	cout << s.size() << endl;
-	cout << s[0] << endl;
-	cout << s << endl;	
-	cout << &s << endl;
-	return 0;
+ 
+
+void printWelcome(int len)
+
+{
+
+       printf("欢迎欢迎 -- %d\n", len);
+
+}
+
+ 
+
+void printGoodbye(int len)
+
+{
+
+       printf("送客送客 -- %d\n", len);
+
+}
+
+ 
+
+void callback(int times, void (* print)(int))
+
+{
+
+       int i;
+
+       for (i = 0; i < times; ++i)
+
+       {
+
+              print(i);
+
+       }
+
+       printf("\n我不知道你是迎客还是送客!\n\n");
+
+}
+
+int main(void)
+
+{
+
+       callback(10, printWelcome);
+
+       callback(10, printGoodbye);
+
+       printWelcome(5);
+
+	   return 0;
+
 }
