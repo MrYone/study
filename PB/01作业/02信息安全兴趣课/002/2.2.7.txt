@@ -1,0 +1,20 @@
+7. 注册表的根键有哪五类？
+
+1. HKEY-USERS
+该根键保存了存放在本地计算机口令列表中的用户标识和密码列表。
+每个用户的预配置信息都存储在HKEY-USERS根键中。
+HKEY—USERS是远程计算机中访问的根键之一。
+
+2. HKEY—CURRENT—USER
+该根键包含了本地工作站中存放的当前登录的用户信息，包括用户登录名和存放的口令（注意，这个密码在输入的时候是隐藏的。）
+用户登录windos操作系统的时候，其信息从HKEY USERS 中相应的项复制到HKEY—CURRENT—USER中。
+
+3. HKEY—CURRENT—CONFIG
+该根键存放着当前用户桌面配置的数据、最后使用的文档列表和其他有关的当前用户的windows版本的安装信息等。
+
+4. HKEY—CLASSES—ROOT
+该根键根据windows操作系统中所安装的应用程序的扩展名，来指定文件类型。
+
+5. HKEY—LOCAIMACHINE
+该根键存放本地计算机的硬件信息，该根键下的子关键字包含在SYSTEM.DAT中用来提供HKEY—LOCAL—MACHINE所需要的信息，或者在远程计算机中可访问的一组键盘中。
+该根键下的许多与System.ini中的设置项类似。
