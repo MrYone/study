@@ -1,0 +1,8 @@
+7. 从内存的角度分析局部变量的本质是什么？
+
+char 	cName = '15PB';		//0x009AFE0F
+int 	nName = '15PB';		//0x009AFE18
+char 	c1 = '1';			//0x009AFE0F
+char 	c5 = '5';			//0x009AFE03
+char 	cP = 'P';			//0x009AFDF7
+char 	cB = 'B';			//0x009AFDEB

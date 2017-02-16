@@ -1,0 +1,56 @@
+5. main函数结束后还做了哪些操作？
+
+002513A0  pop         edi  
+002513A1  pop         esi  
+002513A2  pop         ebx  
+002513A3  mov         esp,ebp  
+002513A5  pop         ebp  
+002513A6  ret  
+
+002516D9  add         esp,0Ch  
+002516DC  mov         dword ptr ds:[0025813Ch],eax  
+002516E1  cmp         dword ptr ds:[258140h],0  
+002516E8  jne         __tmainCRTStartup+1B6h (02516F6h)  
+002516EA  mov         eax,dword ptr ds:[0025813Ch]  
+002516EF  push        eax  
+002516F0  call        dword ptr ds:[2590F4h]  
+
+
+/*
+
+            mainret = wmain(argc, argv, envp);
+002516D9  add         esp,0Ch  
+002516DC  mov         dword ptr ds:[0025813Ch],eax  
+#else  /* WPRFLAG */
+            __initenv = envp;
+            mainret = main(argc, argv, envp);
+#endif  /* WPRFLAG */
+
+#endif  /* _WINMAIN_ */
+
+            /*
+             * Note that if the exe is managed app, we don't really need to
+             * call exit or _c_exit. .cctor should be able to take care of
+             * this.
+             */
+#if !defined (_WINMAIN_) && defined (_CRT_APP)
+
+            _cexit();
+            /* WINAPI_FAMILY_APP "Windows" applications should never reach here,
+            * but Console applications will - if they do not exit the process first.
+            * So, exit the process.
+            */
+            ExitProcess(mainret);
+
+#else  /* !defined (_WINMAIN_) && defined (_CRT_APP) */
+            if ( !managedapp )
+002516E1  cmp         dword ptr ds:[258140h],0  
+002516E8  jne         __tmainCRTStartup+1B6h (02516F6h)  
+            {
+#ifndef _CRT_APP
+                exit(mainret);
+002516EA  mov         eax,dword ptr ds:[0025813Ch]  
+002516EF  push        eax  
+002516F0  call        dword ptr ds:[2590F4h]  
+
+*/
