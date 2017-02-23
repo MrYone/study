@@ -1,0 +1,85 @@
+#!/usr/local/bin/python3.6
+
+import sys,zipfile,getopt
+
+"""
+violence crack zip
+命令格式
+vcz [-p passWordFile] [-o outPutDir] [-h] {zipFileName}
+"""
+
+'''
+#爆破函数（被爆破文件，爆破完毕保存位置，爆破密码）
+'''
+def tryZipPwd (zFile, savePath, pw=None) :
+    try:#如果有异常则爆破失败，返回false，成功则返回true
+        if pw == None:
+            zFile.extractall (savePath)
+
+        else :
+            pw = pw.replace('\n','')#去掉每行最后的换行符
+            zFile.extractall (path = savePath, pwd = pw.encode('utf-8'))#开始爆破
+
+        print ('[+] Zip uncompress success, Password is :[ %s ]' % (pw))
+        return True
+
+    except :
+        print ('[-] Zip uncompress fail, Password is : [ %s ]' % (pw))
+        return False
+
+
+'''
+#程序开始
+'''
+try:#从命令行得到参数
+    opts, args = getopt.getopt(sys.argv[1:], "hp:o:")#h为没有值的项，p和o有值
+
+except getopt.GetoptError:#异常则给出提示，并退出程序
+    print ("No this opration! \nPlease enter [-h] opration!")
+    sys.exit (0)
+
+zFile = ""
+savePath = "./"
+pwFile = ""
+pw = None
+
+#print (opts)
+#print (args)
+
+
+for op, value in opts: #参数匹配
+    if op == "-p" :
+        pwFile = value
+        try :
+            pwOpen = open (pwFile,'r')
+            #pw = pwOpen.readline()
+        except FileNotFoundError:
+            print ("No this passWord file!")
+            sys.exit (0)
+
+    elif op == "-o" :
+        savePath = value
+
+
+    elif op == "-h":
+        print("\nviolence crack zip\n\n命令格式:\nvcz [-p passWordFile] [-o outPutDir] [-h] {zipFileName}\n")
+        sys.exit (0)
+
+#print ("test")
+
+if args == [] :#如果没有给出被爆破文件则退出
+    print("\nviolence crack zip\n\n命令格式:\nvcz [-p passWordFile] [-o outPutDir] [-h] {zipFileName}\n")
+    sys.exit (0)
+else :
+    with zipfile.ZipFile (args[0]) as zFile : #将爆破文件传人zip接口
+        if tryZipPwd(zFile,savePath) == True :#密码为空退出
+            sys.exit(0)
+        try :#如果没有给出字典文件，则退出
+            for pw in pwOpen :#循环读取每一条密码进行爆破
+                if tryZipPwd(zFile,savePath,pw) == True :
+                    sys.exit(0)
+
+        except :
+            sys.exit(0)
+
+pwOpen.close()

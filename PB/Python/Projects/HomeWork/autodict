@@ -1,0 +1,16 @@
+#!/usr/local/bin/python3.6
+
+import sys
+
+dictFile = open ("dictPass.txt",'w')
+
+i = 0
+
+while (True) :
+    dictFile.write(str(i))
+    dictFile.write('\n')
+    i += 1
+    if(i == 10000) :
+        break
+
+dictFile.close()
