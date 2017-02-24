@@ -1,0 +1,144 @@
+一 创建，显示，修改，删除 数据库 CREATE SHOW  ALTER  DROP  
+1 创建数据库
+create database  name
+2 显示数据库，显示所有的数据库
+2.1 SHOW DATABASES
+2.2 SHOW CREATE DATABASE db_name
+
+
+3 修改数据库
+ALTER  DATABASE db_tank  gbk
+
+4 删除数据库
+DROP DATABASE db_tank
+
+二 创建，显示，修改，删除 表    CREATE  SHOW  ALTER  DROP  
+1 创建一个表
+1.1 CREATE TABLE 名字()
+1.2 内部的字段先写名称，再写类型
+1.3 用,分割。
+use db_name;
+CREATE TABLE STU(
+	id    int,
+	name  varchar(30),
+	sex   varchar(1),
+	class1 varchar(30),
+	time  date
+	);
+2 查看一个表
+2.1 SHOW TABLES 查看所有的表（先指定哪一个数据库）
+2.2 SHOW CREATE TABLE stu（查看一个表的创建信息）
+3 修改一个表
+3.1 添加一列
+ALTER TABLE stu
+     ADD COLUMN end_date  date  AFTER time;
+3.2 删除一列
+ALTER TABLE stu
+     DROP COLUMN end_date;
+
+3.3 修改某一列的名字
+use db_name;
+ALTER TABLE stu
+     CHANGE COLUMN id stuid int ;
+4 删除一个表
+DROP TABLE stu;
+
+三 给表中的字段设置主键
+3.1 主键约束
+CREATE TABLE STU(
+	id    int PRIMARY KEY,
+	name  varchar(30),
+	sex   varchar(1),
+	class1 varchar(30),
+	time  date
+	);
+3.2 非空，唯一
+CREATE TABLE STU(
+	id    int PRIMARY KEY,
+	name  varchar(30) NOT NULL UNIQUE,
+	sex   varchar(1),
+	class1 varchar(30),
+	time  date
+	);
+3.3 默认值
+use db_name;
+CREATE TABLE STU(
+	id    int PRIMARY KEY,
+	name  varchar(30) NOT NULL UNIQUE,
+	sex   varchar(4) DEFAULT '男',
+	class1 varchar(30),
+	time  date
+	);
+
+四 向表中插入数据（增 insert  删 delete  改 update  查 select）
+4.1 添加数据（可以一次添加一行，也可以一次添加多行）
+use db_name;
+INSERT INTO STU(id,name,sex,class1,time) VALUES(
+4,'小红','女','8班','2017-8-10'),
+(3,'小张','男','7班','2017-8-11');
+
+4.2 改
+#更新（修改）数据
+UPDATE 	table_name    
+	SET col_name1=expr1 [, col_name2=expr2 ...]    
+	[WHERE where_definition] 
+
+update stu set class1 = ‘9班’ where id = 2;
+
+4.3 删
+#删除数据
+delete  from  table_name       
+	[WHERE where_definition] 
+
+delete from stu where id >2 ; 
+
+
+4.4 查
+4.4.1 简单查询
+select _要看的列___  FROM ___表__
+
+select id,name from stu;
+如果要查看所有的数据
+select  * from  stu
+4.4.2 根据条件查询
+
+select  * from  stu where XXX （可以是逻辑表达式：）
+
+4.4.3 去掉重复
+select  DISTINCT __列名__  from stu where XXX
+
+4.4.4 修改列名
+use db_name;
+select id 【as】 学号,name 【as】名字 from  stu;
+
+4.4.5 查询的同时做数学运算
+select id 学号 ,(id+2)*2 处理过的学号,name 学生姓名 from stu;
+
+4.4.6 where子句详细
+条件表达式和逻辑表达式 大家都比较熟悉
+
+between...and //在一个范围内
+select  * from  stu where id between 2 and  5;
+in            //查询在括号内的值
+select  * from  stu where id in (2, 5);
+like          --模糊匹配，注意%和_的区别
+select  * from  stu where name like '小%'
+
+IS NULL       //判断是不是空
+
+4.4.7 对查询结果排序 Asc 升序、Desc 降序
+order by
+select  * from  stu order by  id Desc ;
+
+4.4.8 内置函数
+select * from stu where id in (2, 5);
+
+select COUNT(*) from stu where id in (2, 5);
+可以求和，求某一列的平均数，求个数
+
+5 备份和还原
+5.1 可以用Navicat来备份还原，直接图形化操作
+5.2 用一个工具 mysqldump.exe这个工具备份还原
+示例：                               注意这个符号
+备份：mysqldump -u root -p tankwar_net > d:/tankwar_net_10_15.sql
+还原：mysqldump -u root -p tankwar_net < d:/tankwar_net_10_15.sql
