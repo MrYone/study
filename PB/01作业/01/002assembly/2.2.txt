@@ -1,0 +1,36 @@
+2.
+	EAX,EBX,ECX,EDX,ESI,EDI,EBP,ESP
+
+3.
+	不知道
+
+4.	
+	CF,PF,AF,ZF,SF,TF,IF,DF,OF
+
+5.
+	不知道
+
+6.
+	ADD,SUB,DIV,MUL,AND,OR,XOR,SMP,XCHG,PUSH,POP,RET
+
+7.
+	直接寻址
+	间接寻址
+
+8.
+	push nNumb
+	push nNuma
+	call fun
+
+	PUSH EBP
+	MOV EBP , ESP
+	SUB ESP , 4
+
+	MOV EAX , [ESP + 8]
+	ADD EAX , [ESP + 12]
+
+	MOV ESP , EBP
+	POP EBP 
+	RET 4
+
+	

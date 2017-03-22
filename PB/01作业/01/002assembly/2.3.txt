@@ -1,0 +1,39 @@
+9.
+	IP
+
+10.
+	(cx != 0) && (zf == 0)
+11.
+	eax,ebx,ecx,edx,esi,edi,ebp,esp
+	ecs,ess,eds,ees
+
+12.
+	D
+
+13.
+	D
+
+14.
+	栈底
+
+15.
+	SI,DI
+
+16.
+	直接寻址
+
+17.
+	(cx != 0) && (zf == 0)
+
+18.
+	(cx != 0) && (zf == 0)
+
+19.
+	1.	SHL EAX , 2
+	2.	MOV EBX , 4
+		MUL EBX
+20.
+	LEA	EBX , VAR
+
+
+	
