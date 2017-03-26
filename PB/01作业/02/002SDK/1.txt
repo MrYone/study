@@ -1,14 +1,42 @@
-
 ---------------------------------------------------------------------------------------
 思考题
 
 1.窗口风格有三大风格，分别是什么？各有什么特点？
+	WS_OVERLAPPED		重叠窗口，顶层窗口，默认有标题栏和边框等元素
+	WS_POPUP			弹出窗口，默认没有标题栏
+	WS_CHILD			子窗口，非顶层窗口，必须有父窗口，只能出现在父窗口的客户区
 
 2.WM_COMMAND作为控件的通知消息，wParam与lParam分别有什么含义？
+	当WM_COMMAND作为控件的通知消息时：
+		WPARAM:低位时控件窗口ID，高位时通知码
+		LPARAM:控件句柄
+
+	当WM_COMMAND作为菜单的通知消息时：
+		WPARAM:低位时菜单ID，高位是0
+		LPARAM:0
 
 3.什么是模态对话框？什么是非模态对话框？用什么创建？
+	模态对话框：
+		模态对话框显示时不允许用户操作其他窗口
+		int MessageBox(HWND hWnd, LPCTSTR lpszText, LPCTSTR lpszCation, DWORD dwType);
+		DialogBox(
+			_IN_OPT_	HINSTANCE	hInstance,
+			_IN_		LPCTSTR		lpTemplateName,
+			_IN_OPT_	HWND		hWndParent,
+			_IN_OPT_	DLGPROC		lpDialogFunc
+		);
+
+	非模态对话框：
+		非模态对话框允许用户操作其他窗口切换
+		HWND CreateDialog(
+			_IN_OPT_	HINSTANCE	hInstance,
+			_IN_		LPCTSTR		lpszDialogName,
+			_IN_OPT_	HWND		hWndParent,
+			_IN_OPT_	WNDPROC		lpDialogFunc
+		);
 
 4.控件既可以用代码创建，也可以在对话框资源上拖拽，创建控件的函数是什么？
+	宏CreateWindow -> 函数CreateWindowExW
 
 ---------------------------------------------------------------------------------------
 上机题

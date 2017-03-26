@@ -2,16 +2,62 @@
 思考题
 
 1.请谈谈你对DC的理解
+	DC（device content）设备上下文，设备环境
+	windows对图显示设备进行了封装，形成了一个统一的虚拟图形显示设备。
+	应用程序可以在这个虚拟设备上进行绘图，而具体的虚拟设备跟物理设备之间
+	的数据转换由设备的驱动程序完成
+	简单的理解，我们可以吧DC当做程序提供了一张画布，在其上画图能够显示在程序上
 
 2.说出你所知道的获得DC的方法，都有什么区别
+	1.	BeginPaint(hWnd,&ps);
+		EndPaint(hWnd,&ps);
+		WM_PAINT
+	2.	GetDC(hWnd);
+		ReleaseDC(hWnd,hdc);
+		客户区DC
+	3.	GetWindowDC(hWnd);
+		ReleaseDC(hWnd,hdc);
+		窗口DC
+	4.	CreateDC(lpszDriver,lpszDriver,lpszOutput,lpInitData);
+		DeleteDC(hdc);
+		设备DC
+	5.	hdcMem = CreateCompatibleDC(hdc);
+		DeleteDC(hdcMem);
+		内存DC
 
 3.DC都包含哪些GDI对象？使用什么函数将一个GDI对象与DC关联？
+	使用HGDIOBG SelectObject(HDC,HGDIOBGJ)来把一个GDI对象与DC关联
+	GDI对象就是绘图时使用得工具，不如画笔，画刷，字体，位图，调色板，剪裁区
+	绘图时，需要先把相应的GDI设备选入设备环境
 
 4.写出画点，画线，画矩形，画圆，画多边形，画贝塞尔曲线的函数名
+	SetPixel(点)
+	LineTo(线)
+	Polyline(线)
+	Rectangle(矩形)
+	RoundRect(圆角的矩形)
+	Elipse(圆)
+	Polygon(多边形)
+	PolyBezier(赛尔曲线)
 
 5.什么是双缓冲？
+	在DC中绘制频率高时，不把内容直接绘制在DC中，而是先在内存中创建一个与屏幕绘图
+	区域一致的内存DC。然后在其上绘制图形，待绘制完毕或绘制一部分后，再一次性绘制
+	到DC中去，以此控制绘制刷新频率，解决闪烁问题
 
 6.向窗口贴图的一般步骤
+	DC贴图一般步骤
+	1.加载位图
+		LoadBitmap()
+		GetObject()
+	2.获取DC，以及根据DC创建内存DC
+		GetDC()
+		CreateCompatibleDC()
+	3.把图片选入内存DC
+		SelectObject()
+	4.把内存DC复制到DC，完成显示
+		BitBle()
+		StrechBit()
 
 ---------------------------------------------------------------------------------------
 上机题

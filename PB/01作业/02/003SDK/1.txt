@@ -2,10 +2,44 @@
 思考题
 
 1.WM_NOTIFY和WM_COMMAND的区别
+	子控件向父窗口发送通知除了WM_COMMAND消息，还能发送WM_NOTIFY
+	WM_COMMAND:
+	来源		WPARAM高位				WPARAM低位			LPARAM
+	菜单		0						 菜单ID				 0
+	快捷键	   1						快捷键对应菜单ID	 	 0
+	控件		opcode(BN_CLICKED)		 控件ID				 控件句柄
+	
+	WM_NOTIFY:
+	消息类型		WPARAM						LPARAM
+	WM_NOTIFY	发生WM_NOTIFY消息的控件ID		  NMHDR附加信息机构结构体
 
 2.使用通用（扩展）控件的准备工作都有哪些？
+	1.包含头文件
+		#include <CommCtrl.h>
+	2.导入lib文件
+		#pragma comment(lib,"Comctl32.lib")
+	3.调用初始化方法
+		InitCommonControls();
 
 3.图片控件加载图片，发送的是哪一个消息？lParam和wParam分别是什么含义？
+	加载图片基本步骤：
+	1.创建控件
+	hPicture = GetDigltem(hWnd,0x9000)
+	HWND hPicture = CreateWindow(
+		TEXT("static),
+		TEXT(""),
+		WS_VISIBLE | WS_CHILD | SS_BITMAP | SS_CENTERIMAGE,
+		10,10,800,300,
+		hWnd,
+		(HMENU)0x9000,
+		hInst,0
+	);
+
+	2.加载图片
+	HBITMAP hBitMap = LoadBitmap(hInst,MAKEINTRESOURCE(IDB_BITMAP1));	
+	
+	3.显示图片
+	sendMessage(hPicture,STM_SETIMAGE,IMAGE_BITMAP,(LPARAM)hBitMap);
 
 ---------------------------------------------------------------------------------------
 上机题
